@@ -1,6 +1,6 @@
 const express=require('express');   // include express
 const path=require('path');     // include path
-const port=8000;            //store port in variable
+const port=process.env.PORT || 8000;            //store port in variable
 const db=require('./config/mongoose');    //include mongoose
 const Tasks=require('./models/tasks');     //include tasks
 
