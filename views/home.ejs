@@ -1,0 +1,142 @@
+<html>
+    <head>
+        <title>
+            <%= title%>
+        </title>
+        <!-- added some scripts here also -->
+        <script src="https://kit.fontawesome.com/5c14fb59bd.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <!-- linked Favicon ICON for TODO APP -->
+        <link rel="icon" type="image/x-icon" href="/images/icon.ico?v=">
+        <!-- linked css -->
+        <link rel="stylesheet" href="/css/home.css"> 
+    </head>
+    <body>
+        <div id="container"> <!--main div-->
+        <h1 id="page-head"> <!-- div for heading-->
+            <i class="fas fa-tasks"></i> <!-- icon for todo app-->
+            To-Do List</h1>
+            <form action="/create_newtask" method="POST">  <!-- form for adding new task to DB-->
+                <input type="text" name="work" placeholder="Enter a task" autofocus="autofocus" required> <!-- set autofocus to input -->
+                <input type="date" name="date" required> <!-- date input-->
+                
+                <select id="category" name="category" required>   <!--- input drop down for category-->
+                    <option value="">Select type of task</option>      <!--options-->
+                    <option value="Home">Home</option>               <!--options-->
+                    <option value="Work">Work</option>              <!--options-->
+                    <option value="School">School</option>          <!--options-->
+                    <option value="Personal">Personal</option>      <!--options-->
+                    <option value="Others">Others</option>              <!--options-->
+                </select>
+                <br>
+                <button type="submit" id="add" class="button">+ADD TASK</button> <!--Button ADD-->
+            </form><br>
+            <div class="filters">   <!--Filter ALL,COMPLETE,INCOMPLETE-->
+                <input type="radio" id="all" name="filter" value="all" checked>
+                <label for="all" onclick="show_all();completedBeep();" title="Show all tasks">All</label>
+                <input type="radio" id="unchecked" name="filter" value="unchecked">
+                <label for="unchecked" onclick="show_incomplete();completedBeep();" title="Show Incomplete tasks">Incomplete</label>
+                <input type="radio" id="checked" name="filter" value="checked" >
+                <label for="checked" onclick="show_complete();completedBeep();" title="Show completed tasks">Completed</label>
+            </div>
+        
+            <ul class="todo-list"> <!--list of tasks-->
+                <% for (let i of tasks_list) {%> <!--check for every task-->
+                    <% if(i.completed==true) {%>  <!--if it is completed then apply style of completed list-->
+                    <a href="/update-status/?id=<%=i._id%>" >
+                        <li class="check">   <!--class for 'check'-->
+                        <div class="details">
+                        <span id="work" title="Click to mark as NOT COMPLETED"><%=i.work%></span>&emsp;  <!--show task name-->
+                        <%if(i.category==='Home'){%>  <!--check if BADGE 'HOME'-->
+                            <span class="home"><%=i.category%></span>
+                        <%}%>
+                        <%if(i.category==='Work'){%>  <!--check if BADGE 'Work'-->
+                            <span class="work"><%=i.category%></span>
+                        <%}%>
+                        <%if(i.category==='School'){%>  <!--check if BADGE 'School'-->
+                            <span class="school"><%=i.category%></span>
+                        <%}%>
+                        <%if(i.category==='Personal'){%>  <!--check if BADGE 'Others'-->
+                            <span class="personal"><%=i.category%></span>
+                        <%}%>
+                        <%if(i.category==='Others'){%>  <!--check if BADGE 'HOME'-->
+                            <span class="others"><%=i.category%></span>
+                        <%}%>
+                        <div id="date">     <!--Show date icon and Date-->
+                            <i class="fas fa-calendar-day"></i>
+                            <span class="cal-text"><%=i.date.toString().substr(0,15)%></span>
+                        </div>
+                        </a>
+
+                        <a href="/update-imp/?id=<%=i._id%>">
+                            <% if(i.impStatus==false) {%>      <!--Show icon star if NOT COMPLETE-->
+                            <i class="far fa-star unimp" title="Click to mark as important!"></i>
+                            <%}%>
+                            <% if(i.impStatus==true) {%>      <!--Show icon star if COMPLETE-->
+                                <i class="fas fa-star imp" title="Click to mark as not important!"></i>
+                            <%}%>
+                        </a>
+                        </div>
+                        <div class="deleteBtn">      <!--Show DELETE button-->
+                            <a href="/delete-task/?id=<%=i._id%>">
+                                <i class="fas fa-trash-alt" title="Delete Task"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <%}%>
+
+                    <% if(i.completed==false) {%>  <!--if it is not completed then apply style of 'not completed' list-->
+                        <a href="/update-status/?id=<%=i._id%>" onclick="completedBeep();">
+                            <li class="default" >  <!--class for not completed task-->
+                            <div class="details" >
+                            <span id="work" title="Click to mark as COMPLETED"><%=i.work%></span>&emsp;   <!--show task name-->
+                            <%if(i.category==='Home'){%>  <!--check if BADGE 'HOME'-->
+                                <span class="home"><%=i.category%></span>
+                            <%}%>
+                            <%if(i.category==='Work'){%>  <!--check if BADGE 'Work'-->
+                                <span class="work"><%=i.category%></span>
+                            <%}%>
+                            <%if(i.category==='School'){%>  <!--check if BADGE 'School'-->
+                                <span class="school"><%=i.category%></span>
+                            <%}%>    
+                            <%if(i.category==='Personal'){%>  <!--check if BADGE 'Personal'-->
+                                <span class="personal"><%=i.category%></span>
+                            <%}%>
+                            <%if(i.category==='Others'){%>  <!--check if BADGE 'Others'-->
+                                <span class="others"><%=i.category%></span>
+                            <%}%>
+                            <div id="date">  <!--show date -->
+                                <i class="fas fa-calendar-day"></i>
+                                <span class="cal-text"><%=i.date.toString().substr(0,15)%></span>
+                            </div>
+                            </a>
+
+                        <a href="/update-imp/?id=<%=i._id%>">
+                            <% if(i.impStatus==false) {%>      <!--Show icon star if NOT COMPLETE-->
+                                <i class="far fa-star unimp" title="Click to mark as important!"></i>
+                                <%}%>
+                                <% if(i.impStatus==true) {%>      <!--Show icon star if COMPLETE-->
+                                    <i class="fas fa-star imp" title="Click to mark as not important!"></i>
+                                <%}%>
+                        </a>
+                            </div>
+                            <div class="deleteBtn">      <!--Show delete BTN-->
+                                <a href="/delete-task/?id=<%=i._id%>">
+                                    <i class="fas fa-trash-alt" title="Delete Task"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <%}%>
+                <%}%>
+            </ul>
+           <footer>        <!-- footer div for showing total number of tasks -->
+                <div class="number">
+                    <%= count%> tasks left
+                </div>        
+            </footer>
+        </div>
+        <!-- added scripts in html -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="/js/home.js"></script>
+    </body>
+</html>

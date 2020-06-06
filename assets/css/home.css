@@ -1,0 +1,327 @@
+/* added body style */
+body{
+    margin:0;
+    font-family: sans-serif;
+    text-align: center;
+    background-color: wheat;
+}
+/* hide scroll bar */
+html
+{
+  /*hide scroll bar in mozilla*/
+    scrollbar-width: none;
+}
+/* hide scroll bar in chrome */
+::-webkit-scrollbar {
+    width: 0px !important;
+}
+
+/* set style for a */
+a{
+    text-decoration: none;
+    color:black;
+}
+/* set style for page heading */
+#page-head{
+    text-align: center;
+    margin-top: 25px;
+    color: rgb(45, 99, 248);
+}
+/* set style for button to add task */
+.button {
+    position: relative;
+    background-color: #1fa8f8;
+    border: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 5px;
+    width: 150px;
+    text-align: center;
+    transition-duration: 0.5s;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  /* change color on button hover */
+  .button:hover{
+      background-color:#5fc1fa ;
+  }
+  /* added some effects on button click using these CSS */
+  .button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  .button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+/* Added style for container div */
+#container
+{
+    width:80%;
+    background-color:#f4f4f4;
+    margin: 0px auto;
+    border: 1px solid black;
+    box-shadow: 5px 10px 18px 10px #aaaaaa;
+}
+/* style for UNORDERED List in container div */
+#container ul
+{
+    padding: 0;
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+/* Style for List Items */
+#container ul li{
+    border-bottom: 1px solid grey;
+    background-color: #b4e2fd;
+}
+/* style for hover on any li items */
+#container ul li:hover{
+    background-color: lightgray;
+    transition: ease-out 0.9s;
+}
+/* Style for detail class which store li item text and icons in flex */
+.details
+{
+    width: 90%;
+    display: inline-flex;
+    padding: 12px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size:20px;
+    font-family: sans-serif;
+}
+/* class for hiding some element */
+.hide
+{
+    display: none;
+}
+/* When clicked on, add a background color and strike out text */
+.check {
+    color: rgb(156, 143, 143);
+    font-style: italic;
+  }
+/* added some symbol 'square'/'check' before link text */
+ul li::before {
+    content: '\274F'; /* add a square before li */
+    position: relative;
+    border: none;
+    font-size: 18px;
+    text-decoration: none;
+    top: 0px;
+    left: 0px;
+    height: 15px;
+    width: 15px;
+  }
+  /* Add a "checked" mark when clicked on */
+  ul li.check::before {
+    content: '\2714'; /* add a checkmark before li */
+    position: relative;
+    border: none;
+    text-decoration: none !important;
+    font-weight: bold;
+    top: 0px;
+    left: 0px;
+    height: 15px;
+    width: 15px;
+  }
+  /* change color of li items if completed */
+  ul li.check #work {
+    color: gray;
+    text-decoration: line-through;
+    transition: ease-in 5s;
+  }
+/* Delete button div */
+.deleteBtn{
+    display: inline;
+    text-align: center;
+}
+/* anchor tag for delete btn */
+.deleteBtn a{
+    font-size: 25px;
+    color:grey;
+}
+/* change color on hover over delete btn */
+.deleteBtn a:hover{
+    color: red;
+    transition: ease-in-out 0.6s;
+}
+/* style for input textbox */
+input[type=text]
+{
+    width: 40%;
+    font-size: 18px;
+    padding: 2px 5px;
+    margin-top: 0px;
+    border: none;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid black;
+}
+/* style for date Input */
+input[type=date]
+{
+    width:20%;
+    font-size: 15px;
+    background-color:#f4f4f4;
+    margin: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+/* it removes default outline in INPUT elements */
+input:focus
+{
+    outline: none;
+}
+/* style for drop dorn list for category of Tasks */
+#category
+{
+    font-size: 14px;
+    padding-top:10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    background-color: transparent;
+}
+/* style for BADGE of HOME */
+.home{
+    background-color: teal;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+}
+/* style for work badge */
+.work{
+    background-color: violet;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+}
+/* style for school badge */
+.school{
+    background-color: orange;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+}
+/* style for personal BADGE */
+.personal{
+    background-color: blue;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+    opacity: 0.6;
+}
+/* style for OTHERS badge */
+.others{
+    background-color:  #ff6666;
+    color: white;
+    font-size: small;
+    font-family: cursive;
+    padding: 1px 5px;
+    font-style: italic;
+}
+/* Style for Filters===>>> ALL, completed, Incomplete */
+.filters label{
+    margin: 10px;
+    font-size: 16px;
+    color: rgb(56, 50, 75);
+    transition: 0.6s;
+    font-weight: normal;
+}
+/* style for filter radio btn */
+.filters input[type="radio"]:checked+label 
+{
+     font-weight: bold;
+}
+/* style for hiding radio btn */
+.filters input {
+    display: none;
+}
+/* style for star icon */
+.fa-star
+{
+    margin-top: 10px;
+    font-size: 15px;
+}
+/* style for calendar icon */
+.fa-calendar-day
+{
+    color: grey;
+}
+/* imp class for icons which are shown if important marked */
+.imp{
+    color:blueviolet;
+}
+/* imp class for icons which are shown if important not marked */
+.unimp:hover
+{
+    transition: 0.4s;
+    color:blueviolet;
+}
+/* for date text on li */
+#date{
+    font-size: 13px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: normal;
+    color: rgb(105, 103, 103);
+   text-align: left;
+}
+/* style for footer */
+footer{
+    margin: 20px;
+    font-weight: bold;
+    
+}
+/* some style for medium screens */
+@media screen and (max-width: 1200px) {
+    #container
+    {
+        width:90%;
+    }
+    .details{
+        width:85%;
+    }
+  }
+/* some styles for small screens */
+  @media screen and (max-width: 700px) {
+    #container
+    {
+        width:100%;
+    }
+    .details{
+        width:80%;
+    }
+  }
+/* some styles for x-small screens */
+  @media screen and (max-width: 550px) {
+    #container
+    {
+        width:100%;
+    }
+    .details{
+        width:70%;
+    }
+  }
