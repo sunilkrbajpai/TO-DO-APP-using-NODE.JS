@@ -2,7 +2,7 @@
 const mongoose=require('mongoose');
 
 //connect db
-mongoose.connect('mongodb://localhost/todo_list_db');
+mongoose.connect('mongodb+srv://skb:f7zlMvEAi91vZ5fY@todoapp.efdc9.mongodb.net/todoappDB?retryWrites=true&w=majority');
 
 //ACQUIRE connection if successful
 const db=mongoose.connection;
